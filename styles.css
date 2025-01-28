@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.keypad {
+  display: grid;
+  grid-template-rows: repeat(4, 60px); /* 4 rows */
+  grid-template-columns: repeat(3, 60px); /* 3 columns */
+  gap: 10px;
+  margin-bottom: 20px; /* Space between keypad and textbox */
+}
+
+.row {
+  display: contents;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key:hover {
+  background-color: #e0e0e0;
+}
+
+/* Hide empty keys (spacing) */
+.key:empty {
+  visibility: hidden;
+}
+
+#numberDisplay {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#patternCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
