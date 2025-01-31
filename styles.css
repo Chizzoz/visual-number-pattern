@@ -9,11 +9,13 @@ body {
 }
 
 .keypad {
+  position: relative;
   display: grid;
   grid-template-rows: repeat(4, 60px); /* 4 rows */
   grid-template-columns: repeat(3, 60px); /* 3 columns */
   gap: 10px;
-  margin-bottom: 20px; /* Space between keypad and textbox */
+  margin-bottom: 10px; /* Space between keypad and textbox */
+  padding:10px; /* Allows large circles to go beyond keypad dimensions. */
 }
 
 .row {
@@ -53,7 +55,5 @@ body {
 
 #patternCanvas {
   position: absolute;
-  top: 0;
-  left: 0;
   pointer-events: none;
 }

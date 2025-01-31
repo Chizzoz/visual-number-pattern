@@ -1,12 +1,13 @@
 const canvas = document.getElementById('patternCanvas');
 const ctx = canvas.getContext('2d');
+const keypad = document.querySelector('.keypad');
 const keys = document.querySelectorAll('.key');
 const points = [];
 const clickSequence = []; // Track the sequence of clicked numbers
 const numberDisplay = document.getElementById('numberDisplay'); // Textbox to display numbers
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = keypad.offsetWidth;
+canvas.height = keypad.offsetHeight;
 
 // Maximum radius for circles (should not exceed button size)
 const MAX_RADIUS = 36; // Reduced to 36 pixels
@@ -19,9 +20,8 @@ function updatePattern() {
     clickSequence.forEach(number => {
         const key = document.querySelector(`.key[data-number="${number}"]`);
         if (key) {
-            const rect = key.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
+            const x = key.offsetLeft + (key.offsetWidth / 2);
+            const y = key.offsetTop + (key.offsetHeight / 2);
 
             // Check if the number already exists in the points array
             const existingPointIndex = points.findIndex(point => point.number === number);
@@ -37,7 +37,7 @@ function updatePattern() {
                 }
             } else {
                 // If the number doesn't exist, add it to the points array with an initial radius
-                points.push({ x, y, number, radii: [10] }); // Initial radius remains 10 pixels
+                points.push({x, y, number, radii: [10]}); // Initial radius remains 10 pixels
             }
         }
     });
@@ -46,20 +46,21 @@ function updatePattern() {
 }
 
 // Event listener for keypad clicks
-keys.forEach(key => {
+keys.forEach(key => (
     key.addEventListener('click', () => {
         const number = key.getAttribute('data-number');
-
+    
         // Add the clicked number to the sequence
         clickSequence.push(number);
-
+    
         // Update the textbox with the clicked numbers
         numberDisplay.value = clickSequence.join('');
-
+    
         // Update the pattern
         updatePattern();
-    });
-});
+    })
+));
+
 
 // Event listener for textbox input
 numberDisplay.addEventListener('input', (event) => {
@@ -80,35 +81,33 @@ numberDisplay.addEventListener('input', (event) => {
 function drawPattern() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (clickSequence.length > 1) {
-        // Draw lines between points in the click sequence
-        ctx.beginPath();
+    // Draw lines between points in the click sequence
+    ctx.beginPath();
 
-        // Move to the first point in the sequence
-        const firstNumber = clickSequence[0];
-        const firstPoint = points.find(point => point.number === firstNumber);
-        if (firstPoint) {
-            ctx.moveTo(firstPoint.x, firstPoint.y);
-        }
-
-        // Draw lines to the remaining points in the sequence
-        for (let i = 1; i < clickSequence.length; i++) {
-            const currentNumber = clickSequence[i];
-            const currentPoint = points.find(point => point.number === currentNumber);
-            if (currentPoint) {
-                ctx.lineTo(currentPoint.x, currentPoint.y);
-            }
-        }
-
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+    // Move to the first point in the sequence
+    const firstNumber = clickSequence[0];
+    const firstPoint = points.find(point => point.number === firstNumber);
+    if (firstPoint) {
+        ctx.moveTo(firstPoint.x, firstPoint.y);
     }
+
+    // Draw lines to the remaining points in the sequence
+    for (let i = 1; i < clickSequence.length; i++) {
+        const currentNumber = clickSequence[i];
+        const currentPoint = points.find(point => point.number === currentNumber);
+        if (currentPoint) {
+            ctx.lineTo(currentPoint.x, currentPoint.y);
+        }
+    }
+
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 
     // Draw circles and numbers
     points.forEach(point => {
         // Draw circles for each radius
-        point.radii.forEach((radius, index) => {
+        point.radii.forEach((radius) => {
             ctx.beginPath();
             ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
             ctx.fillStyle = 'transparent'; // No fill for the circles
@@ -125,9 +124,3 @@ function drawPattern() {
         ctx.fillText(point.number, point.x, point.y);
     });
 }
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    drawPattern();
-});
