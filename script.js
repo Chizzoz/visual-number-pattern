@@ -8,14 +8,6 @@ const clickSequence = []; // Track the sequence of clicked numbers
 const numberDisplay = document.getElementById('numberDisplay'); // Textbox to display numbers
 const clearButton = document.getElementById('clearButton'); // Clear button
 
-// Set canvas dimensions to match keypad (including padding)
-const scale = window.devicePixelRatio || 1; // Get device pixel ratio
-canvas.width = keypad.offsetWidth * scale; // Scale canvas width
-canvas.height = keypad.offsetHeight * scale; // Scale canvas height
-canvas.style.width = `${keypad.offsetWidth}px`; // Set display width
-canvas.style.height = `${keypad.offsetHeight}px`; // Set display height
-ctx.scale(scale, scale); // Scale the context
-
 // Maximum radius for circles (should not exceed button size)
 const MAX_RADIUS = 36; // Reduced to 36 pixels
 const RADIUS_INCREMENT = 3; // Reduced to 3 pixels
@@ -50,6 +42,21 @@ const colorPalette = [
     '#0066CC', // Dark blue
     '#003366'  // Darkest blue
 ];
+
+scaleCanvas(); // Initial scaling
+
+// Function to scale the canvas for desktop and mobile zoom
+function scaleCanvas() {
+    const pixelRatio = window.devicePixelRatio;
+    const zoomLevel = window.visualViewport.scale;
+    const scale = pixelRatio * (zoomLevel > 1 ? zoomLevel : 1); // zoomLevel > 1 means mobile zoom
+
+    canvas.width = keypad.clientWidth * scale;
+    canvas.height = keypad.clientHeight * scale;
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+
+    drawPattern();
+}
 
 // Function to get the color for a specific step
 function getColor(step) {
@@ -150,6 +157,11 @@ clearButton.addEventListener('click', () => {
     updatePattern(); // Redraw the pattern
 });
 
+// Event listener for desktop and mobile zoom
+window.visualViewport.addEventListener('resize', () => {
+    scaleCanvas();
+});
+
 function drawPattern() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -183,13 +195,3 @@ function drawPattern() {
         ctx.fillText(point.number, point.x, point.y);
     });
 }
-
-// Handle window resizing
-window.addEventListener('resize', () => {
-    canvas.width = keypad.offsetWidth * scale;
-    canvas.height = keypad.offsetHeight * scale;
-    canvas.style.width = `${keypad.offsetWidth}px`;
-    canvas.style.height = `${keypad.offsetHeight}px`;
-    ctx.scale(scale, scale);
-    updatePattern();
-});
