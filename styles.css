@@ -1,11 +1,12 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Ensure body takes at least the full viewport height */
+  overflow-y: auto; /* Make body scrollable if content exceeds viewport height */
 }
 
 .keypad {
@@ -14,8 +15,8 @@ body {
   grid-template-rows: repeat(4, 60px); /* 4 rows */
   grid-template-columns: repeat(3, 60px); /* 3 columns */
   gap: 10px;
-  margin-bottom: 10px; /* Space between keypad and textbox */
-  padding:10px; /* Allows large circles to go beyond keypad dimensions. */
+  margin: 20px 0; /* Add margin for spacing */
+  padding: 10px; /* Allows large circles to go beyond keypad dimensions */
 }
 
 .row {
@@ -29,7 +30,11 @@ body {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 14px; /* Match canvas font size */
+  font-family: Arial, sans-serif; /* Match canvas font family */
+  color: #000; /* Match canvas fillStyle */
+  text-align: center; /* Match canvas textAlign */
+  line-height: 1; /* Ensure text is vertically centered */
   cursor: pointer;
   user-select: none;
 }
@@ -50,10 +55,28 @@ body {
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-bottom: 10px; /* Space between textbox and clear button */
+}
+
+#clearButton {
+  width: 220px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px; /* Space below the clear button */
+}
+
+#clearButton:hover {
+  background-color: #e0e0e0;
 }
 
 #patternCanvas {
   position: absolute;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* Ensure clicks pass through to the keys */
 }
