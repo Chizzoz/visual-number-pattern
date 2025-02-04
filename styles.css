@@ -37,6 +37,7 @@ body {
   line-height: 1; /* Ensure text is vertically centered */
   cursor: pointer;
   user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove blue tap hightlight in mobile Chrome */
 }
 
 .key:hover {
@@ -56,6 +57,16 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px; /* Space between textbox and clear button */
+}
+
+/* Remove spin buttons on desktop browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: textfield; /* For Firefox */
 }
 
 #clearButton {
