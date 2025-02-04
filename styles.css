@@ -9,6 +9,12 @@ body {
   overflow-y: auto; /* Make body scrollable if content exceeds viewport height */
 }
 
+.forkme {
+  position: fixed; 
+  top: 0; 
+  right: 0;
+}
+
 .keypad {
   position: relative;
   display: grid;
