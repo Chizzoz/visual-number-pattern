@@ -1,12 +1,27 @@
+/*Dark mode*/
+:root {
+  --background-color: #f0f0f0; 
+  --text-color: gray; 
+  --primary-color: black; 
+}
+
+[data-theme="dark"] {
+  --background-color: #121212; 
+  --text-color: black; 
+  --primary-color: white; 
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
-  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
   min-height: 100vh; /* Ensure body takes at least the full viewport height */
   overflow-y: auto; /* Make body scrollable if content exceeds viewport height */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s; 
 }
 
 .keypad {
@@ -92,4 +107,12 @@ input[type="number"] {
   width: 100%;
   height: 100%;
   pointer-events: none; /* Ensure clicks pass through to the keys */
+}
+
+#theme-toggle {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }

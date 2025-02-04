@@ -195,3 +195,29 @@ function drawPattern() {
         ctx.fillText(point.number, point.x, point.y);
     });
 }
+
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check current mode in localStorage
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+  body.setAttribute('data-theme', 'dark');
+  themeToggle.textContent = 'Switch to light mode';
+} else {
+  body.setAttribute('data-theme', 'light');
+  themeToggle.textContent = 'Switch to dark mode';
+}
+
+// Switch between modes
+themeToggle.addEventListener('click', () => {
+  if (body.getAttribute('data-theme') === 'dark') {
+    body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    themeToggle.textContent = 'Switch to dark mode';
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.textContent = 'Switch to light mode';
+  }
+});
