@@ -59,6 +59,16 @@ body {
   margin-bottom: 10px; /* Space between textbox and clear button */
 }
 
+/* Remove spin buttons on desktop browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: textfield; /* For Firefox */
+}
+
 #clearButton {
   width: 220px;
   padding: 10px;
