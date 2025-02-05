@@ -1,4 +1,21 @@
 {
-  "projectName": "<insert the repo's name>",
-  "projectOwner": "<insert the repo's owner/orgs>"
+  "projectName": "visual-number-pattern",
+  "projectOwner": "Chizzoz",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "Chizzoz",
+      "name": "Chizzo Cheese",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17289498?v=4",
+      "profile": "https://oneziko.com",
+      "contributions": [
+        "maintenance"
+      ]
+    }
+  ]
 }
