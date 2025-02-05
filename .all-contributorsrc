@@ -1,4 +1,21 @@
 {
-  "projectName": "<insert the repo's name>",
-  "projectOwner": "<insert the repo's owner/orgs>"
+  "projectName": "visual-number-pattern",
+  "projectOwner": "Chizzoz",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "valaair",
+      "name": "valaair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/196161259?v=4",
+      "profile": "https://github.com/valaair",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
 }
