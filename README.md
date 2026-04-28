@@ -24,6 +24,18 @@ A sleek, interactive web-based tool that visualizes numeric sequences as geometr
 - **Dark Mode Support**: Seamlessly switch between light and dark themes to suit your preference.
 - **Fully Responsive**: Optimized for both desktop and mobile devices with intelligent canvas scaling.
 
+## 🎨 Color System
+
+The tool uses a curated 20-color palette to provide clear visual feedback for each step in a sequence:
+
+- **Shades & Gradients**: The palette includes five progressive shades for each of the following colors:
+  - 🔘 **Grays/Black**: Neutral starting points.
+  - 🔴 **Reds**: Vibrant alerts and highlights.
+  - 🟢 **Greens**: Success and flow indicators.
+  - 🔵 **Blues**: Calm and professional transitions.
+- **Dynamic Assignment**: Colors are assigned sequentially (`step % 20`). As you input numbers, the pattern flows through these gradients, ensuring that even long sequences remain visually distinct and easy to track.
+- **Visual Depth**: Repeated numbers use increasing radii with new colors, creating a "target" effect that highlights frequency.
+
 ## 🛠️ Technologies Used
 
 - **HTML5**: For semantic structure.
